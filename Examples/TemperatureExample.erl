@@ -1,6 +1,6 @@
 %% Author: jamesa
 %% Created: Dec 23, 2009
-%% Description: TODO: Prints list of Temps in Celcius, and lists Min/Max, in recursion.
+%% Description: TODO: Prints list of Temps in Celcius, and lists Min/Max, in a single loop.
 -module(test).
 
 %%
@@ -18,6 +18,9 @@
 format_templist(List) ->
 	format_temps(List).
 
+%%
+%% Local Functions
+%%
 format_temps([City | Rest]) ->
 	TempCity = convert_to_c(City),
 	{TempMin, TempMax} = test_minmax(TempCity, TempCity, TempCity),
@@ -32,9 +35,6 @@ format_tempsfind([City | Rest], Min, Max) ->
 format_tempsfind([], Min, Max) ->
 	print_minmax(Min, Max),
 	ok.
-%%
-%% Local Functions
-%%
 
 print_minmax({Min_Name, {c, Min_Temp}}, {Max_Name, {c, Max_Temp}}) ->
 	io:format("Max temperature was ~w c in ~w~n", [Max_Temp, Max_Name]),
