@@ -28,7 +28,11 @@ echo() ->
 	end.
 
 test() ->
-	erlnode ! {echo, self(), "TESTING"}.
+	erlnode ! {echo, self(), "TESTING"},
+	receive
+		{echo, PID, What} ->
+			io:fwrite("Test received a reply from erlnode")
+	end.
 
 %%
 %% Local Functions
